@@ -24,7 +24,7 @@ def convert_xlsx_to_csv(excelfile, csvfile, sheetname, char_code):
     data = pandas.read_excel(excelfile, sheetname, index_col=None)
 
     # CSVで出力
-    data.to_csv(csvfile, encoding=char_code)
+    data.to_csv(csvfile, encoding=char_code, index=None)
 
     print("Success to convert: %s => %s" % (excelfile, csvfile))
     return 0
@@ -44,7 +44,7 @@ if __name__ == '__main__':
                         help='path of csv file')
 
     parser.add_argument('--sheetname', '-s', type=str,
-                        default='sheet1', help='sheet name to convert csv')
+                        default='Sheet1', help='sheet name to convert csv')
 
     parser.add_argument('--charcode', '-c', type=str, choices=['utf-8', 'shift_jis', 'cp932'],
                         default='utf-8', help='charactor code of output csv')
