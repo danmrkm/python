@@ -1,0 +1,35 @@
+{
+    "url" : "/test",
+    "query_name" : "sample_query",
+    "reply" :
+    [
+	{
+	    "sample_query" : "123456",
+	    "status_code" : 200,
+	    "reply_data" : {	  
+		"responseData": {
+		    "resultCode":"000",
+		    "errorInfo":null
+		}
+	    }
+	},
+	{
+	    "sample_query" : "234567",
+	    "status_code" :  200,
+	    "reply_data" : {
+		"responseData": {
+		    "resultCode":"100",
+		    "errorInfo" : {
+			"errorInfoList" : [
+			    {
+				"messageId": "EP1000003",
+				"message": "クレカ疑似番号がトークナイゼーション化されていません。",
+				"embeddedMessageList": null
+			    }
+			]
+		    }
+		}
+	    }
+	}
+    ]
+}
