@@ -98,11 +98,13 @@ def run_httpd_server(configfile, jsonfile):
     app = Flask(__name__)
     app.config['JSON_AS_ASCII'] = False
     app.config["JSON_SORT_KEYS"] = False
+
     
     @app.route(url)
     def return_json():
 
         response = ""
+        default_response = ""
         
         # json に設定されているURLでフィルタ
         if url == reply_json_data['url']:
@@ -111,18 +113,30 @@ def run_httpd_server(configfile, jsonfile):
 
             for i in range(0,len(reply_json_data['reply'])):                
 
+                if reply_json_data['reply'][i]['tag'] == 'DEFAULT':
+                    default_response = jsonify(reply_json_data['reply'][i]['reply_data'])
+                    default_response.status_code = reply_json_data['reply'][i]['status_code']
+                
                 if reply_json_data['reply'][i][query_name] == query:
                     response = jsonify(reply_json_data['reply'][i]['reply_data'])
                     response.status_code = reply_json_data['reply'][i]['status_code']
                     break
-                
-            if response == "":
-                result_query = {
-                    'status': 'NG'
-                }
 
-                response = jsonify(result_q=result_query)
-                response.status_code = 200
+
+            # マッチする設定が定義されていない場合
+            if response == "":
+                # デフォルト設定が定義されていればそれを用いる
+                if default_response != '':
+                    response = default_response
+                    response.status_code = default_response.status_code
+
+                # デフォルト設定が定義されていない場合
+                else:
+                    result_query = {
+                        'status': 'NG'
+                    }
+                    response = jsonify(result_q=result_query)
+                    response.status_code = 200
 
         # json ファイルに定義されていないものはstatus:OKとして返す
         else:
@@ -139,8 +153,13 @@ def run_httpd_server(configfile, jsonfile):
     # SSL が有効な場合、暗号化方式および証明書、鍵を設定
     if ssl_switch == 'ON':
         context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-        context.load_cert_chain(cert_file, key_file)
 
+        # Keyfile が指定されていなければ、証明書と鍵が同一ファイル前提で SSL を設定
+        if len(key_file) > 3:
+            context.load_cert_chain(cert_file, key_file)
+        else:
+            context.load_cert_chain(cert_file)
+            
     try:
         # SIGNALを受信したら、sig_exit関数を実行
         signal.signal(signal.SIGINT, sig_exit)

@@ -6,6 +6,7 @@
 	{
 	    "sample_query" : "123456",
 	    "status_code" : 200,
+	    "tag" : "DEFAULT",
 	    "reply_data" : {	  
 		"responseData": {
 		    "resultCode":"000",
@@ -16,14 +17,15 @@
 	{
 	    "sample_query" : "234567",
 	    "status_code" :  200,
+	    "tag" : "",	    
 	    "reply_data" : {
 		"responseData": {
 		    "resultCode":"100",
 		    "errorInfo" : {
 			"errorInfoList" : [
 			    {
-				"messageId": "EP1000003",
-				"message": "クレカ疑似番号がトークナイゼーション化されていません。",
+				"messageId": "EP1000000",
+				"message": "トークナイゼーション化されていません。",
 				"embeddedMessageList": null
 			    }
 			]
