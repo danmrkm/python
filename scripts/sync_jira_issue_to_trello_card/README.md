@@ -39,4 +39,5 @@ JIRA のステータスに対応させるため、Trello のリストを作成�
 | TRELLO_JIRA_STATUS_MAPPING | JIRA のステータスと Trello のリストをマッピングする設定|
 
 ## 実行
-`run.py` を実行する。パラメータ等はなし。
+`python3 run.py`
+で実行可能。
