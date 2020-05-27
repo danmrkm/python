@@ -23,7 +23,11 @@ JIRA のステータスに対応させるため、Trello のリストを作成�
 - pending
 - done
 
-### 4. 各種パラメータの設定
+### 4. Trello 側で JIRA 連携の Power-Up を有効化する
+Trello の JIRA 連携 Power-Up 機能を有効化し、連携させたい JIRA Project の課題をカードに連携できるように設定する。
+[Jira Power-Upを使用する](https://help.trello.com/article/1081-using-the-jira-power-up)
+
+### 5. 各種パラメータの設定
 `run.py` の各パラメータについて、設定する。設定項目は以下。
 
 | 項目 | 内容 |
