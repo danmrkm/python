@@ -7,7 +7,7 @@ JIRA_BASE_URL = "https://yourdomain.atlassian.net"
 TRELLO_BASE_URL = "https://api.trello.com"
 
 JIRA_USER_ID = "your_jira_user_id"
-JIRA_API_KEY = "your_jira_api_key"
+JIRA_API_TOKEN = "your_jira_api_token"
 
 TRELLO_BOARD_ID = "your_trello_board_id"
 TRELLO_API_KEY = "your_trello_api_key"
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     sync_jira_to_trello = sync_jira_to_trello.SyncJiraToTrello(
         JIRA_BASE_URL,
         JIRA_USER_ID,
-        JIRA_API_KEY,
+        JIRA_API_TOKEN,
         JIRA_PROJECT_LIST,
         TRELLO_BASE_URL,
         TRELLO_BOARD_ID,
